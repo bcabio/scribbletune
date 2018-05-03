@@ -1,0 +1,117 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Users\\Sonicfangs\\Documents\\scribbletune',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\Sonicfangs\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle scribbletune@0.10.0~prepublish: scribbletune@0.10.0
+11 silly lifecycle scribbletune@0.10.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\Sonicfangs\\AppData\\Roaming\\npm-cache\\scribbletune\\0.10.0\\package.tgz',
+12 verbose tar pack   'C:\\Users\\Sonicfangs\\Documents\\scribbletune' ]
+13 verbose tarball C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package.tgz
+14 verbose folder C:\Users\Sonicfangs\Documents\scribbletune
+15 verbose addLocalTarball adding from inside cache C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package.tgz
+16 verbose correctMkdir C:\Users\Sonicfangs\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd scribbletune@0.10.0
+18 verbose afterAdd C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\Sonicfangs\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package\package.json written
+21 silly publish { name: 'scribbletune',
+21 silly publish   version: '0.10.0',
+21 silly publish   description: 'Create music with JavaScript and Node.js!',
+21 silly publish   main: './src/index.js',
+21 silly publish   scripts: { test: 'gulp' },
+21 silly publish   dependencies: { btoa: '^1.1.2', jsmidgen: '^0.1.5' },
+21 silly publish   devDependencies:
+21 silly publish    { gulp: '^3.9.0',
+21 silly publish      'gulp-eslint': '^1.1.1',
+21 silly publish      'gulp-istanbul': '^0.10.3',
+21 silly publish      'gulp-tape': '0.0.7',
+21 silly publish      tape: '^4.2.0' },
+21 silly publish   repository: { type: 'git', url: 'git://github.com/walmik/scribbletune.git' },
+21 silly publish   keywords: [ 'javascript', 'music', 'midi' ],
+21 silly publish   author: { name: 'Walmik Deshpande' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/walmik/scribbletune/issues' },
+21 silly publish   engines: { node: '>6.x.x' },
+21 silly publish   readme: 'Scribbletune (Requires Node 4+)\r\n------------------------------------------------\r\n[![Build Status](https://api.travis-ci.org/walmik/scribbletune.svg)](http://travis-ci.org/walmik/scribbletune)\r\n\r\nUse simple __JavaScript__ `Strings` and `Arrays` to generate rhythms and musical patterns. Directly use the names of scales and chords and mash them up using JavaScript libraries like `underscore` or `lodash` in ways you hadn\'t imagined before! Then, export them as MIDI files and import these in Ableton Live, Reason, Fruity Loops, Cubase, Garage Band or whichever music creation software you like!\r\n\r\n### Install\r\n\r\n`npm install scribbletune`\r\n\r\n### Let\'s C how this works\r\nYou can get started by requiring the `scribbletune` module and create a `clip` that contains just the middle C note. A clip is like a 16 beat bar.\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\nlet clip = scribble.clip({\r\n    notes: [\'c4\']\r\n});\r\nscribble.midi(clip);\r\n```\r\nSave this file as _c.js_ and run it from the terminal with `node c.js`. This will create a file called _music.mid_ at the same location as the _c.js_ file. If you import the MIDI file into your favorite MIDI music editing software (Garage Band / Cubase / Ableton Live / Reason etc), you ll hear the beautiful middle C played across a single bar.\r\n\r\n### Create a simple melody\r\nYou can do more than render a single note! You can `require` the scribbletune module and use it to generate scales(modes), chords and patterns to create melodies. For example, to create a MIDI file comprising just the C Major scale (Ionian mode), you could create a new file and add some code like this:\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\n\r\nlet clip = scribble.clip({\r\n    notes: scribble.scale(\'c\', \'major\', 3), // this works too [\'c3\', \'d3\', \'e3\', \'f3\', \'g3\', \'a3\', \'b3\']\r\n\tpattern: \'x-\'.repeat(8)\r\n});\r\n\r\nscribble.midi(clip, \'cscale.mid\');\r\n```\r\nSave this as _cscale.js_ and run it from the terminal `node cscale.js`. This will create a MIDI file called _cscale.mid_ in the same location as the above file.\r\n\r\n[C Major Scale generated with Scribbletune](https://soundcloud.com/walmik/c-major) \r\n\r\nTo get a list of all the modes and scales that Scribbletune can generate, you can do this,\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\nconsole.log(scribble.scales);\r\n```\r\nHere is a [list of modes and scales](https://github.com/walmik/scribbletune/blob/master/src/modes.js) that Scribbletune recognizes.\r\n\r\n### Chords\r\n\r\nYou can add chords to the `notes` array while creating a clip to render chords. Either provide the notes (with octave) of the chords you want separated by commas or use Scribbletune\'s chord generator.\r\n\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\nlet chords = scribble.clip({\r\n\tnotes: [\'F#min\', \'C#min\', \'Dmaj\', \'Bmin\', \'Emaj\', \'Amaj\', \'Dmaj\', \'C#min\', \'Amaj\'],\r\n\tpattern: \'x_x_x_--\'.repeat(8),\r\n\tsizzle: true\r\n});  \r\n\r\nscribble.midi(chords, \'chords.mid\');\r\n```\r\n\r\nI imported that into Garage Band and applied Synthesize -> EDM Chord ->Sunrise Chords to it and here is how it sounds:\r\n\r\n[Chords generated with Scribbletune](https://soundcloud.com/walmik/chords) \r\n\r\nTo get a list of all the chords that Scribbletune can generate, you can do this,\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\nconsole.log(scribble.listChords());\t// [ \'maj\', \'min\', \'sus2\', \'sus4\', \'maj7\', \'min7\', \'dom7\', \'dim\', \'dim7\', \'aug\', \'sixth\']\r\n```\r\n\r\n### Patterns\r\n\r\nYou may wonder what are those weird looking, but enticing `x`, `-` and `_`. Well, those are patterns! `x` means _note on_, `-` (hyphen) means `note off` and `_` (underscore) means _sustain_. Patterns can be used to tell Scribble tune which beat in a 16 beat pattern would you like to be on or off or sustained. Patterns can also be used to create accent maps (which allow some notes to be played louder than others).\r\n\r\n### Create a simple beat\r\nWith the new String.repeat function, you can quickly generate interesting patterns for note on/off as well as accent maps. For instance,\r\n\r\n```js\r\nlet pattern = \'x---\'.repeat(4);\r\n```\r\nThat will return,\r\n```\r\nx---x---x---x---\r\n```\r\n\r\nWhat can you use that pattern for? Well, it looks like a standard 4 by 4 kick drum pattern to me! What about this:\r\n```js\r\nlet pattern = \'--x-\'.repeat(4);\r\n```\r\nThat will return,\r\n```\r\n--x---x---x---x-\r\n```\r\nHmmm, that can be a very simple bass line for a simple dance music loop. Let\'s feed that into __Scribbletune\'s__ clip function and try something different while generating the notes, shall we?\r\n\r\n### An excessively simple Kick Drum and Bass loop\r\n\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\nlet kick, bass;\r\n\r\n// 4 by 4 kick\r\nkick = scribble.clip({\r\n\tnotes: [\'c2\'],\r\n\tpattern: \'x---\'.repeat(4)\r\n});\r\nscribble.midi(kick, \'kick.mid\');\r\n\r\n// A simple bass line\r\nbass = scribble.clip({\r\n\tnotes: scribble.scale(\'a\', \'minor\', 2).slice(0, 3),\r\n\tpattern: \'--x-\'.repeat(4),\r\n\tshuffle: true\r\n});\r\nscribble.midi(bass, \'bass.mid\');\r\n```\r\nUp there, we first created a 4 by 4 kick drum loop and then decided to use the first 3 notes of a _A minor_ scale on the second octave to create a simple bass line. We created a simple pattern using __JavaScript\'s__ `String.repeat` and then added the `shuffle` parameter to shuffle those 3 notes. Finally, we exported it as a MIDI file called _bass.mid_\r\n\r\n### Hi-Hats\r\nLet s just take this one teeny weeny step further and create a simple hi-hat loop as well,\r\n\r\n```js\r\nconst scribble = require(\'scribbletune\');\r\n\r\nlet hats = scribble.clip({\r\n\tnotes: [\'c4\'],\r\n\tpattern: \'x\'.repeat(16),\r\n\taccentMap: \'x---x---x-x---x-\'\r\n});\r\n\r\nscribble.midi(hats, \'hats.mid\');\r\n```\r\nHere we created a 16 beat bar with all its 16 notes set to `x` (which means _Note On_) and added a `sizzle` to it. This applies a `Math.Sin` wave to the accents on that clip, giving it a bouncier feel.\r\n\r\nImport the 3 MIDI files thus generated into your favorite music creation software and add them to 3 different tracks. I used Garage Band and added some delay on the bass and here\'s what I got:\r\n\r\n[Simple kick drum with bass and some hats generated by Scribbletune](https://soundcloud.com/walmik/loop) \r\n\r\nThere\'s a lot more to this humble beginning. But I ll let you explore it for yourself. As you can see, now you can use any JavaScript library (or not) to compute melodies using Scribbletune! Ok then, get on with it :)\r\n\r\n```\r\nnpm install scribbletune\r\n```\r\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'dd89720c6bd2ec08667577ddbabcd1cd8bb3b996',
+21 silly publish   homepage: 'https://github.com/walmik/scribbletune#readme',
+21 silly publish   _id: 'scribbletune@0.10.0',
+21 silly publish   _shasum: '7eee42dd8a15519734df6f5caadb2c775448a4a0',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name scribbletune
+24 silly mapToRegistry scope (from config) @scribbletune-brian
+25 verbose mapToRegistry no registry URL found in config for scope @scribbletune-brian
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: 'scribbletune',
+28 silly mapToRegistry   scope: null,
+28 silly mapToRegistry   escapedName: 'scribbletune',
+28 silly mapToRegistry   name: 'scribbletune',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag' }
+29 silly mapToRegistry uri https://registry.npmjs.org/scribbletune
+30 verbose publish registryBase https://registry.npmjs.org/
+31 silly publish uploading C:\Users\Sonicfangs\AppData\Roaming\npm-cache\scribbletune\0.10.0\package.tgz
+32 verbose request uri https://registry.npmjs.org/scribbletune
+33 verbose request sending authorization for write operation
+34 info attempt registry request try #1 at 3:06:20 PM
+35 verbose request using bearer token for auth
+36 verbose request id 76f2a7641adaac59
+37 http request PUT https://registry.npmjs.org/scribbletune
+38 http 403 https://registry.npmjs.org/scribbletune
+39 verbose headers { 'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=300',
+39 verbose headers   'content-length': '106',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   date: 'Sun, 23 Jul 2017 20:06:39 GMT',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   connection: 'keep-alive',
+39 verbose headers   'x-served-by': 'cache-dfw1841-DFW',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1500840399.758873,VS0,VE463',
+39 verbose headers   vary: 'Accept-Encoding, Accept' }
+40 verbose request invalidating C:\Users\Sonicfangs\AppData\Roaming\npm-cache\registry.npmjs.org\scribbletune on PUT
+41 error publish Failed PUT 403
+42 verbose stack Error: you do not have permission to publish "scribbletune". Are you logged in as the correct user? : scribbletune
+42 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+42 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+42 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+42 verbose stack     at emitTwo (events.js:106:13)
+42 verbose stack     at Request.emit (events.js:191:7)
+42 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+42 verbose stack     at emitOne (events.js:96:13)
+42 verbose stack     at Request.emit (events.js:188:7)
+42 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+43 verbose statusCode 403
+44 verbose pkgid scribbletune
+45 verbose cwd C:\Users\Sonicfangs\Documents\scribbletune
+46 error Windows_NT 10.0.14393
+47 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+48 error node v6.10.3
+49 error npm  v3.10.10
+50 error code E403
+51 error you do not have permission to publish "scribbletune". Are you logged in as the correct user? : scribbletune
+52 error If you need help, you may report this error at:
+52 error     <https://github.com/npm/npm/issues>
+53 verbose exit [ 1, true ]
